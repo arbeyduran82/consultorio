@@ -1,4 +1,11 @@
-<?php include 'header.php'?>
+<?php 
+include 'header.php';
+?>
+<h3>Hola Bienvenido <?php echo '<strong>'.$_SESSION['medico'].'</strong>'?></h3>
+<?php
+require_once '../controller/controladorcitas.php';
+
+?>
 <style>
 h3 {
     text-align: center;
@@ -15,6 +22,7 @@ if (!$_SESSION["verificar"]) {
 
 
 ?>
-<h3>Hola Bienvenido <?php echo '<strong>'.$_SESSION['medico'].'</strong>'?></h3>
+
+
 
 <?php include 'footer.php' ?>

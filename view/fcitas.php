@@ -162,7 +162,7 @@ require_once '../view/header.php';
       </div>
       <div class="content" style="text-align:center;">
         <div class="justify-content-center">
-          <h2>Listado de citas asignadas.</h2>
+          <h4>Listado de citas asignadas.</h4>
           <div class="col-auto mt-5">
             <table class="table">
               <thead class="thead-dark center">
