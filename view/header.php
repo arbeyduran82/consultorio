@@ -22,17 +22,34 @@ include '../config/config.php';
     <span class="navbar-toggler-icon"></span>
   </button>
         <ul class="navbar-nav">
-            <li class="nav-item active"><a class="nav-link" href="controladorprincipal1.php">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="controladorconsultorio.php">Consultorios</a></li>
-            <li class="nav-item"><a class="nav-link" href="controladorespecialidad.php">Especialidades</a></li>
-            <li class="nav-item"><a class="nav-link" href="controladormedico.php">Medicos</a></li>
-            <li class="nav-item"><a class="nav-link" href="controladorpaciente.php">Pacientes</a></li>
-            <li class="nav-item"><a class="nav-link" href="controladorcitas.php">Citas</a></li>
-            <li class="nav-item"><a class="nav-link" href="controladorusuario.php">Usuarios</a></li>  
+
+        <?php
+            session_start();
+            if(!$_SESSION['verificar']){
+                header("location:index.php");
+                        } 
+            if(isset($_SESSION['usuario'])){
+                echo '<li class="nav-item active"><a class="nav-link" href="controladorprincipal1.php">Inicio</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" href="controladorconsultorio.php">Consultorios</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" href="controladorespecialidad.php">Especialidades</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" href="controladormedico.php">Medicos</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" href="controladorpaciente.php">Pacientes</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" href="controladorcitas.php">Citas</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" href="controladorusuario.php">Usuarios</a></li>';
+                        
+            }elseif(isset($_SESSION['medico'])) {
+                echo '<li class="nav-item active"><a class="nav-link" href="controladorprincipal2.php">Inicio</a></li>';
+            }elseif(isset($_SESSION['auxiliar'])) {
+                echo '<li class="nav-item active"><a class="nav-link" href="controladorprincipal3.php">Inicio</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" href="controladorpaciente.php">Pacientes</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" href="controladorcitas.php">Citas</a></li>';
+            }
+
+            ?>
+            
         </ul>
         <ul class="nav navbar-nav ml-auto">
-            <a href="../controller/salirusuario.php">
-            <button type="submit" class="btn btn-dark navbar-btn">Salir</button></a>
+            <a href="../controller/salirusuario.php"><button type="submit" class="btn btn-dark navbar-btn">Salir</button></a>
         </ul>
     </nav>
 
