@@ -50,26 +50,26 @@ require_once "../config/conexion.php";
             }
         }
 		
-        public function regusuarios($nombre,$apellido,$email,$contraseña,$rol){
+        public function registrousuarios($nombre,$apellido,$email,$pass,$rol){
             $sql="SELECT * FROM usuarios";
             $resultado=$this->_bd->query($sql);
-            $sqle="INSERT INTO usuarios (NombreU,ApellidoU,Email,Contraseña,Rol) VALUES ('".$nombre."','".$apellido."','".$email."','".$contraseña."','".$rol."')";
+            $sqle="INSERT INTO usuarios (nombreUsu,apellidoUsu,emailUsu,pass,rol) VALUES ('".$nombre."','".$apellido."','".$email."','".$pass."','".$rol."')";
             $resultado=$this->_bd->query($sqle);
             if($resultado){
                 print "<script>alert(\"Usuario registrado\");
-                window.location='../view/principal.php';</script>";
+                window.location='../controller/controladorregistrarusuarios.php';</script>";
                 $resultado->close();
                 $this->_bd->close();
             }
             else{
                 print "<script>alert(\"Usuario no registrado\");
-                window.location='../view/principal.php';</script>";
-                $resultado->close();
-                $this->_bd->close();
+                window.location='../controller/controladorregistrarusuarios.php';</script>";
+                /*$resultado->close();
+                $this->_bd->close();*/
             }
         }
-        public function listausuarios(){
-            $sql="select * from usuarios WHERE id>=2";
+        public function listarusuarios(){
+            $sql="select * from usuarios";
             $resultado=$this->_bd->query($sql);
             if($resultado->num_rows>0){
                 while($row=$resultado->fetch_assoc()){
@@ -79,19 +79,19 @@ require_once "../config/conexion.php";
             return $resultadoset;
         }
         public function eliminarusuarios($id){
-            $query="delete from usuarios where id='$id'";
+            $query="delete from usuarios where idUsuario='$id'";
             $resultado=$this->_bd->query($query);
             if(!$resultado){
                 print "<script>alert(\"Uusario no eliminado\");
-                window.location='../view/principal.php'</script>";
+                window.location='../controller/controladorregistrarusuarios.php'</script>";
             }
             else{
                 print "<script>alert(\"Usuario eliminado\");
-                window.location='../view/princiapl.php'</script>";
+                window.location='../controller/controladorregistrarusuarios.php'</script>";
             }
         }
-        public function actualizarusuario($id,$nombre,$apellido,$correo,$con,$rol){
-            $consulta="UPDATE usuarios SET NombreU='$nombre', ApellidoU='$apellido', Email='$correo', Contraseña='$contraseña', Rol='$rol' WHERE id='$id'";
+        public function actualizarusuario($id,$nombre,$apellido,$email,$pass,$rol){
+            $consulta="UPDATE usuarios SET nombreUsu='$nombre', apellidoUsu='$apellido', emailUsu='$email', pass='$pass', rol='$rol' WHERE id='$id'";
             $resultado=$this->_bd->query($consulta);
             if($resultado){
                 print "<script>alert(\"Usuario actualizado\");
@@ -104,7 +104,7 @@ require_once "../config/conexion.php";
             }
         }
         
-        public function cambiarcon($usu,$cona,$conn){
+        public function cambiarpass($usu,$cona,$conn){
             $sql="UPDATE usuarios SET Contraseña='$conn' Where Contraseña='$cona' AND Email='$usu'";
             $res=$this->_bd->query($sql);
             if($res){

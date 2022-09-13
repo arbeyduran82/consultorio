@@ -35,7 +35,7 @@ include '../config/config.php';
                 echo '<li class="nav-item"><a class="nav-link" href="controladormedico.php">Medicos</a></li>';
                 echo '<li class="nav-item"><a class="nav-link" href="controladorpaciente.php">Pacientes</a></li>';
                 echo '<li class="nav-item"><a class="nav-link" href="controladorcitas.php">Citas</a></li>';
-                echo '<li class="nav-item"><a class="nav-link" href="controladorusuario.php">Usuarios</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" href="controladorregistrarusuarios.php">Usuarios</a></li>';
                         
             }elseif(isset($_SESSION['medico'])) {
                 echo '<li class="nav-item active"><a class="nav-link" href="controladorprincipal2.php">Inicio</a></li>';
